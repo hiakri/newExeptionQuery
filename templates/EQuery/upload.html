@@ -1,0 +1,38 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+body{
+background-color:#c1ffe4;
+margin:0;
+padding:0;
+text-align:left;
+}
+</style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="pageContent">
+            <form method="post" action="{% url 'import_uploadfile' %}" enctype="multipart/form-data" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone)">
+            {% csrf_token %}
+            {% load static %}
+
+                <div class="unit">
+                    <label>请选择上传文件：</label>
+                    <input name="file" type="file" />
+                </div>
+
+            <div class="formBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div></li>
+                    <li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+                </ul>
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
+    </html>

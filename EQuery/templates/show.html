@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+<style type="text/css">
+body{
+background-color:#ccc;
+margin:0;
+padding:0;
+text-align:center;
+}
+		</style>
+</head>
+
+<body>
+<h1>ExceptionQuery System</h1>
+    <script type="text/javascript" src="{% static 'highcharts/highcharts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'highcharts/exporting.js' %}"></script>
+    <script type="text/javascript" src="{% static 'highcharts/export-data.js' %}"></script>
+ <div id="container" ></div>
+
+    <script type="text/javascript">
+
+        Highcharts.chart('container', {
+
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: '查询统计'
+                },
+                xAxis: {
+                    categories: {{ Y|safe }},
+                    title: {
+                        text: null
+                    }
+
+                },
+                yAxis: {
+                    min: 0,
+
+                    title: {
+                        text: '次数',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: '次'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true,
+                            allowOverlap: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: '次数',
+                    data: {{ X|safe  }}
+                }]
+            });
+
+    </script>
+</body>
+</html>
